@@ -15,8 +15,24 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/git-ly/config-repo
+          # uri: https://github.com/git-ly/config-repo
+          uri: /mnt/f/code-excercise/spring/cloud-native-spring-in-action/config-repo
           default-label: main
           timeout: 5
           clone-on-start: true
           force-pull: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
